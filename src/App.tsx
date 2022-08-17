@@ -1,9 +1,10 @@
+import MainTemplate from './templates/MainTemplate';
+
 const App = () => {
   return (
-    <>
-      <h1>Weather App</h1>
-      <h2>Hello</h2>
-    </>
+    <MainTemplate>
+      
+    </MainTemplate>
   )
 }
 
