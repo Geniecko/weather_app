@@ -5,4 +5,4 @@ export const defaultTheme: DefaultTheme = {
   secondary: 'blue',
   gray: 'gray',
   white: 'F2F2F2',
-}
+};

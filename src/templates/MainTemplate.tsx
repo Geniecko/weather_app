@@ -4,14 +4,14 @@ import GlobalStyle from '../themes/GlobalStyle';
 import { defaultTheme } from '../themes/mainTheme';
 
 interface MainTemplateProps {
-  children: ReactNode
+  children: ReactNode;
 }
- 
-const MainTemplate: FC <MainTemplateProps> = ({ children }) => (
+
+const MainTemplate: FC<MainTemplateProps> = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
     {children}
   </ThemeProvider>
-)
- 
+);
+
 export default MainTemplate;
