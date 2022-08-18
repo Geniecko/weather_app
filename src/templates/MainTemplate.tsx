@@ -1,10 +1,10 @@
-import { FC, ReactNode } from 'react'
-import { ThemeProvider } from 'styled-components'
-import GlobalStyle from '../themes/GlobalStyle'
-import { defaultTheme } from '../themes/mainTheme'
+import { FC, ReactNode } from 'react';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from '../themes/GlobalStyle';
+import { defaultTheme } from '../themes/mainTheme';
 
 interface MainTemplateProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const MainTemplate: FC<MainTemplateProps> = ({ children }) => (
@@ -12,6 +12,6 @@ const MainTemplate: FC<MainTemplateProps> = ({ children }) => (
     <GlobalStyle />
     {children}
   </ThemeProvider>
-)
+);
 
-export default MainTemplate
+export default MainTemplate;
