@@ -5,8 +5,8 @@ import MainTemplate from './templates/MainTemplate';
 const App = () => {
   const dispatch = useAppDispatch();
 
-  const getData = async () => {
-    dispatch(await getWeather('warsaw'));
+  const getData = () => {
+    dispatch(getWeather('warszawa'));
   };
 
   return (

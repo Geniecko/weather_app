@@ -1,38 +1,23 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_KEY, API_URL } from '../../api/data';
-import { WeatherAction, SET_LOADING, WeatherData, SET_ERROR, GET_WEATHER } from '../types';
+import { SetErrorAction, WeatherData } from '../types';
 
-export const getWeather = async (city: string) => {
-  try {
+export const getWeather = createAsyncThunk<WeatherData, string, { rejectValue: SetErrorAction }>(
+  'weather/get',
+  async (city: string, thunkApi) => {
     const response = await fetch(`${API_URL}&q=${city}&appid=${API_KEY}`);
 
-    if (!response.ok) {
-      return {
-        type: SET_ERROR,
+    if (response.status !== 200) {
+      return thunkApi.rejectWithValue({
         error: {
-          message: 'Error !respone.ok',
+          cod: `${response.status}`,
+          message: `${response.statusText} -> Failed to fetch weather.`,
         },
-      };
-
-      console.log(response);
+      });
     }
 
     const responseData: WeatherData = await response.json();
-
-    return {
-      type: GET_WEATHER,
-      payload: responseData,
-    };
-  } catch (err) {
-    console.log(err);
-    return {
-      type: SET_ERROR,
-      payload: 'Somethink wents wrong',
-    };
-  }
-};
-
-export const setLoading = (): WeatherAction => {
-  return {
-    type: SET_LOADING,
-  };
-};
+    
+    return responseData;
+  },
+);
