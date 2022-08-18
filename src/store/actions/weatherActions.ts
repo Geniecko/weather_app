@@ -1,11 +1,5 @@
 import { API_KEY, API_URL } from '../../api/data';
-import {
-  WeatherAction,
-  SET_LOADING,
-  WeatherData,
-  SET_ERROR,
-  GET_WEATHER,
-} from '../types';
+import { WeatherAction, SET_LOADING, WeatherData, SET_ERROR, GET_WEATHER } from '../types';
 
 export const getWeather = async (city: string) => {
   try {

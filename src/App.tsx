@@ -1,4 +1,3 @@
-
 import { getWeather } from './store/actions/weatherActions';
 import { useAppDispatch } from './store/hooks';
 import MainTemplate from './templates/MainTemplate';
@@ -8,8 +7,8 @@ const App = () => {
 
   const getData = async () => {
     dispatch(await getWeather('warsaw'));
-  }
-  
+  };
+
   return (
     <>
       <MainTemplate>

@@ -8,7 +8,7 @@ const initialState: WeatherState = {
 
 export default (state = initialState, action: WeatherAction): WeatherState => {
   console.log(action.type);
-  
+
   switch (action.type) {
     case GET_WEATHER:
       return {
@@ -20,13 +20,13 @@ export default (state = initialState, action: WeatherAction): WeatherState => {
       return {
         ...state,
         loading: true,
-      }
+      };
     case SET_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     default:
       return state;
   }
