@@ -17,7 +17,7 @@ export const getWeather = createAsyncThunk<WeatherData, string, { rejectValue: S
     }
 
     const responseData: WeatherData = await response.json();
-    
+
     return responseData;
   },
 );
