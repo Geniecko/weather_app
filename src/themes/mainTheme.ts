@@ -6,3 +6,4 @@ export const defaultTheme: DefaultTheme = {
   gray: 'gray',
   white: 'F2F2F2',
 };
+
