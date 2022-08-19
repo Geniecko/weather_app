@@ -29,8 +29,8 @@ const ButtonStyled = styled.button<ButtonProps>`
   justify-content: ${({ search }) => (search ? 'center' : 'space-between')};
   align-items: center;
   gap: 8px;
-  width: ${({ search }) => (search ? '42px' : 'unset')};
-  height: ${({ search }) => (search ? '42px' : 'unset')};
+  width: ${({ search }) => (search ? '44px' : 'unset')};
+  height: ${({ search }) => (search ? '44px' : 'unset')};
   transition: 0.3s ease-in-out;
 
   &:active,

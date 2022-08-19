@@ -5,6 +5,7 @@ interface InputProps {
 }
 
 const Input = styled.input<InputProps>`
+  font-family: 'Montserrat', sans-serif;
   background-image: none;
   background-color: transparent;
   box-shadow: none;
@@ -13,7 +14,7 @@ const Input = styled.input<InputProps>`
   border-radius: ${({ search }) => (search ? '25px 0 0 25px' : '25px')};
   padding: 12px 20px;
   color: ${({ theme }) => theme.primary};
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.4rem;
   letter-spacing: 0.25px;
   border-right: ${({ search }) => (search ? 'none' : '1px solid')};
@@ -23,11 +24,11 @@ const Input = styled.input<InputProps>`
   }
 
   &::placeholder {
-    font-weight: 400;
-    font-size: 1.4rem;
-    letter-spacing: 0.25px;
+    font-weight: 300;
+    font-size: 1.2rem;
     color: ${({ theme }) => theme.primary};
-    opacity: 0.33;
+    letter-spacing: 0.5px;
+    opacity: 0.25;
   }
 
   &:active,
