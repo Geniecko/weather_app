@@ -38,9 +38,13 @@ const weatherSlice = createSlice({
       if (payload === undefined) {
         state.data = null;
         state.loading = false;
+        state.error.message = '';
+        state.error.cod = '';
       } else {
         state.loading = false;
         state.data = payload;
+        state.error.message = '';
+        state.error.cod = '';
       }
     });
   },
