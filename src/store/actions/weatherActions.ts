@@ -5,7 +5,9 @@ import { SetErrorAction, WeatherData } from '../types';
 export const getWeather = createAsyncThunk<WeatherData, string, { rejectValue: SetErrorAction }>(
   'weather/get',
   async (city: string, thunkApi) => {
-    const response = await fetch(`${API_URL}&q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+    const response = await fetch(
+      `${API_URL}&q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+    );
 
     if (response.status !== 200) {
       return thunkApi.rejectWithValue({

@@ -18,7 +18,7 @@ const SearchBar: FC = () => {
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if(city.trim() === ''){
+    if (city.trim() === '') {
       alert('wypełnij pole - testowo');
       return;
     }
@@ -31,7 +31,7 @@ const SearchBar: FC = () => {
     <Wrapper>
       <Logo />
       <Form onSubmit={handleOnSubmit}>
-        <Input placeholder='Enter city name' search onChange={handleOnChange} value={city}/>
+        <Input placeholder='Enter city name' search onChange={handleOnChange} value={city} />
         <Button secondary search>
           <FaSearch />
         </Button>

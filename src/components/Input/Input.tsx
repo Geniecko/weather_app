@@ -18,7 +18,7 @@ const Input = styled.input<InputProps>`
   letter-spacing: 0.25px;
   border-right: ${({ search }) => (search ? 'none' : '1px solid')};
 
-  @media (min-width: 576px){
+  @media (min-width: 576px) {
     min-width: 300px;
   }
 
