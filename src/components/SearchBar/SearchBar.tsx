@@ -31,7 +31,7 @@ const SearchBar: FC = () => {
     <Wrapper>
       <Logo />
       <Form onSubmit={handleOnSubmit}>
-        <Input placeholder='Enter city name' search onChange={handleOnChange} value={city} />
+        <Input placeholder='City name' search onChange={handleOnChange} value={city} />
         <Button secondary search>
           <FaSearch />
         </Button>
