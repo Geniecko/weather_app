@@ -1,20 +1,13 @@
 import MainTemplate from './templates/MainTemplate';
 import styled from 'styled-components/macro';
-import Alerts from './components/Alerts/Alerts';
-import SearchBar from './components/SearchBar/SearchBar';
-import CurrentWeather from './components/CurrentWeather/CurrentWeather';
-import { useAppSelector } from './store/hooks';
+import Routes from './router/Routes';
 
 const App = () => {
-  const weather = useAppSelector((state) => state.weather.data);
-
   return (
     <MainTemplate>
       <div className='app-overlay'>
         <Container>
-          <SearchBar />
-          <Alerts />
-          {weather && <CurrentWeather weather={weather} />}
+          <Routes />
         </Container>
       </div>
     </MainTemplate>
