@@ -1,6 +1,6 @@
 import MainTemplate from './templates/MainTemplate';
 import styled from 'styled-components/macro';
-import Alerts from './Alerts/Alerts';
+import Alerts from './components/Alerts/Alerts';
 import SearchBar from './components/SearchBar/SearchBar';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import { useAppSelector } from './store/hooks';

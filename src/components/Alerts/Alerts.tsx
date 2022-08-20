@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import Loading from '../components/Loading/Loading';
-import { useAppSelector } from '../store/hooks';
+import Loading from '../Loading/Loading';
+import { useAppSelector } from '../../store/hooks';
 
 const Alerts: FC = () => {
   const isLoading = useAppSelector((state) => state.weather.loading);
