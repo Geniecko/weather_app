@@ -56,3 +56,7 @@ export interface WeatherState {
   loading: boolean;
   error: WeatherError;
 }
+
+export interface setAlertAction {
+  message: string;
+}
