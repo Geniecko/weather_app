@@ -35,7 +35,7 @@ const StyledLoading = styled.div`
   position: relative;
   width: 150px;
   height: 50px;
-  transform: scale(.25,.25);
+  transform: scale(0.25, 0.25);
 `;
 
 const Dot = styled.div`
@@ -43,7 +43,7 @@ const Dot = styled.div`
   height: 40px;
   position: absolute;
   top: 50%;
-  transform: translate(0,-50%);
+  transform: translate(0, -50%);
   opacity: 0;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.primary};
@@ -53,7 +53,7 @@ const Dot = styled.div`
   }
 
   &:nth-child(2) {
-    animation: ${loadingDots} 1.5s infinite linear 0.5s
+    animation: ${loadingDots} 1.5s infinite linear 0.5s;
   }
 
   &:nth-child(3) {

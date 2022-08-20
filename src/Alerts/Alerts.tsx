@@ -3,23 +3,18 @@ import styled from 'styled-components';
 import Loading from '../components/Loading/Loading';
 import { useAppSelector } from '../store/hooks';
 
-
 const Alerts: FC = () => {
-  const isLoading = useAppSelector(state => state.weather.loading);
-  const error = useAppSelector(state => state.weather.error);
+  const isLoading = useAppSelector((state) => state.weather.loading);
+  const error = useAppSelector((state) => state.weather.error);
 
-  return ( 
+  return (
     <StyledAlerts>
-      <Alert>
-          {isLoading && <Loading />}
-        </Alert>
-        <Alert>
-          {error.message > '' ? 'No results found' : null}
-        </Alert>
+      <Alert>{isLoading && <Loading />}</Alert>
+      <Alert>{error.message > '' ? 'No results found' : null}</Alert>
     </StyledAlerts>
-   );
-}
- 
+  );
+};
+
 const StyledAlerts = styled.div`
   padding: 16px 0;
   position: relative;

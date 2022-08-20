@@ -12,10 +12,10 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
   const temp = Math.floor(weather.main.temp - 273.15);
   const tempFeelsLike = Math.floor(weather.main.feels_like - 273.15);
   const wind = Math.floor(weather.wind.speed * 3.6);
-  
-  const getTime = (unixTime: number): string  =>  {
+
+  const getTime = (unixTime: number): string => {
     const date = new Date(unixTime * 1000);
-    
+
     let hours = date.getHours();
     let minutes = date.getMinutes();
 
@@ -25,22 +25,46 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
     minutes = Number(minutes.toString().padStart(2, '0'));
 
     return `${hours}:${minutes} ${ampm}`;
-  }
+  };
 
   return (
     <Wrapper>
       <DetailsPanel>
-      <Icon src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
-        <Detail>Description: <span>{weather.weather[0].main}</span></Detail>
-        <Detail>Temp: <span>{temp} {'\u2103'}</span></Detail>
-        <Detail>Feels like: <span>{tempFeelsLike} {'\u2103'}</span></Detail>
-        <Detail>Wind: <span>{wind} km/h</span></Detail>
-        <Detail>Humidity: <span>{weather.main.humidity} %</span></Detail>
-        <Detail>Air pressure: <span>{weather.main.pressure} PS</span></Detail>
-        <Detail>Sunrise: <span>{getTime(weather.sys.sunrise)}</span></Detail>
-        <Detail>Sunset: <span>{getTime(weather.sys.sunset)}</span></Detail>
+        <Icon src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
+        <Detail>
+          Description: <span>{weather.weather[0].main}</span>
+        </Detail>
+        <Detail>
+          Temp:{' '}
+          <span>
+            {temp} {'\u2103'}
+          </span>
+        </Detail>
+        <Detail>
+          Feels like:{' '}
+          <span>
+            {tempFeelsLike} {'\u2103'}
+          </span>
+        </Detail>
+        <Detail>
+          Wind: <span>{wind} km/h</span>
+        </Detail>
+        <Detail>
+          Humidity: <span>{weather.main.humidity} %</span>
+        </Detail>
+        <Detail>
+          Air pressure: <span>{weather.main.pressure} PS</span>
+        </Detail>
+        <Detail>
+          Sunrise: <span>{getTime(weather.sys.sunrise)}</span>
+        </Detail>
+        <Detail>
+          Sunset: <span>{getTime(weather.sys.sunset)}</span>
+        </Detail>
       </DetailsPanel>
-      <Name>{weather.name}, {weather.sys.country}</Name>
+      <Name>
+        {weather.name}, {weather.sys.country}
+      </Name>
     </Wrapper>
   );
 };
@@ -55,7 +79,7 @@ const Wrapper = styled.div`
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px;
 
-  @media (min-width: 576px){
+  @media (min-width: 576px) {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -81,23 +105,23 @@ const Detail = styled.div`
   font-weight: 400;
   margin-bottom: 16px;
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     font-size: 1.8rem;
   }
 
-  &:last-child{
+  &:last-child {
     margin-bottom: 0;
   }
 
-  span{
+  span {
     font-weight: 600;
     font-size: 1.8rem;
     margin-left: 8px;
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
       font-size: 2.4rem;
+    }
   }
-  }
-`
+`;
 
 export default CurrentWeather;

@@ -6,7 +6,7 @@ import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import { useAppSelector } from './store/hooks';
 
 const App = () => {
-  const weather = useAppSelector(state => state.weather.data);
+  const weather = useAppSelector((state) => state.weather.data);
 
   return (
     <MainTemplate>
