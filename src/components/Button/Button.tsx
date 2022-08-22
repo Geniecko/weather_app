@@ -19,19 +19,20 @@ const ButtonStyled = styled.button<ButtonProps>`
   cursor: pointer;
   border: 1px solid ${({ secondary, theme }) => (secondary ? theme.primary : 'transparent')};
   background-color: ${({ secondary, theme }) => (secondary ? 'transparent' : theme.primary)};
-  border-left: ${({ search }) => (search ? 'none' : '1px solid')};
   border-radius: ${({ search }) => (search ? '0 25px 25px 0' : '25px')};
   padding: ${({ search }) => (search ? '0' : '12px 20px')};
   color: ${({ secondary, theme }) => (secondary ? theme.primary : theme.secondary)};
-  font-weight: 500;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.4rem;
   display: flex;
-  justify-content: ${({ search }) => (search ? 'center' : 'space-between')};
+  justify-content: center;
   align-items: center;
+  align-self: center;
+  min-width: ${({ search }) => (search ? 'unset' : '125px')};
   gap: 8px;
   width: ${({ search }) => (search ? '44px' : 'unset')};
   height: ${({ search }) => (search ? '44px' : 'unset')};
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
 
   &:active,
   &:focus,
@@ -39,9 +40,11 @@ const ButtonStyled = styled.button<ButtonProps>`
     outline: 0;
   }
 
-  &:hover {
-    background-color: ${({ secondary, theme }) => (secondary ? theme.primary : theme.secondary)};
-    color: ${({ secondary, theme }) => (secondary ? theme.secondary : theme.primary)};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${({ secondary, theme }) => (secondary ? theme.primary : theme.secondary)};
+      color: ${({ secondary, theme }) => (secondary ? theme.secondary : theme.primary)};
+    }
   }
 `;
 

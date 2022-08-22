@@ -5,11 +5,9 @@ import Routes from './router/Routes';
 const App = () => {
   return (
     <MainTemplate>
-      <div className='app-overlay'>
-        <Container>
-          <Routes />
-        </Container>
-      </div>
+      <Container>
+        <Routes />
+      </Container>
     </MainTemplate>
   );
 };
@@ -20,6 +18,7 @@ const Container = styled.div`
   padding: 24px;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `;
 
 export default App;
