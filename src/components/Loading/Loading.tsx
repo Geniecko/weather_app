@@ -4,11 +4,14 @@ import { keyframes } from 'styled-components';
 
 const Loading: FC = () => {
   return (
-    <StyledLoading>
-      <Dot />
-      <Dot />
-      <Dot />
-    </StyledLoading>
+    <Wrapper>
+      <span>Loading</span>
+      <StyledLoading>
+        <Dot />
+        <Dot />
+        <Dot />
+      </StyledLoading>
+    </Wrapper>
   );
 };
 
@@ -31,16 +34,27 @@ const loadingDots = keyframes`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  span{
+    font-weight: 600;
+  }
+`;
+
 const StyledLoading = styled.div`
   position: relative;
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 30px;
   transform: scale(0.25, 0.25);
 `;
 
 const Dot = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
