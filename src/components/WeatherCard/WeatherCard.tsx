@@ -81,5 +81,4 @@ const Name = styled.h3`
   margin-bottom: 24px;
 `;
 
-
 export default WeatherCard;
