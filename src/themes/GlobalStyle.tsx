@@ -16,7 +16,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
-    background-image: url(${({ theme }) => theme.backgroundPage});
+    
+    background: linear-gradient(
+          rgba(0, 0, 0, 0.6), 
+          rgba(0, 0, 0, 0.6)
+        ), url(${({ theme }) => theme.backgroundPage});
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: cover;

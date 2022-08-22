@@ -68,14 +68,18 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
 };
 
 const Card = styled.div`
-  padding: 24px;
-  border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 `;
+
 const Name = styled.h3`
   font-size: 2.6rem;
   font-weight: 600;
   margin-bottom: 24px;
 `;
+
 
 export default WeatherCard;

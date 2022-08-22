@@ -1,35 +1,46 @@
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import SearchBar from '../components/SearchBar/SearchBar';
-import WeatherCard from '../components/WeatherCard/WeatherCard';
+import WeatherSlider from '../components/WeatherSlider/WeatherSlider';
+
+const polandCities = [
+  'Warszawa',
+  'Kraków',
+  'Katowice',
+  'Gdańsk',
+  'Rzeszów',
+  'Wrocław',
+  'Poznań',
+  'Łódź',
+];
+
+const worldCities = [
+  'Paris',
+  'New York',
+  'Barcelona',
+  'Amsterdam',
+  'London',
+  'Budapeszt',
+  'Zagrzeb',
+  'Berlin',
+];
 
 const Home: FC = () => {
   return (
     <>
       <SearchBar />
-      <WeatherList>
-        <WeatherCard city={'Warszawa'}/>
-        <WeatherCard city={'Kraków'}/>
-        <WeatherCard city={'Rzeszów'}/>
-        <WeatherCard city={'Gdańsk'}/>
-        <WeatherCard city={'Katowice'}/>
-        <WeatherCard city={'Krosno'}/>
-        <WeatherCard city={'Gliwice'}/>
-        <WeatherCard city={'Lublin'}/>
-      </WeatherList>
+      <Slider>
+        <WeatherSlider cities={polandCities} />
+      </Slider>
+      <Slider>
+        <WeatherSlider cities={worldCities} />
+      </Slider>
     </>
   );
 };
 
-const WeatherList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  margin-top: 48px;
-
-  @media (min-width: 576px){
-    grid-template-columns: repeat(2, 1fr);
-  }
+const Slider = styled.div`
+  margin-top: 24px;
 `;
 
 export default Home;

@@ -18,6 +18,7 @@ const Container = styled.div`
   padding: 24px;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `;
 
 export default App;
