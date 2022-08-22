@@ -5,11 +5,9 @@ import Routes from './router/Routes';
 const App = () => {
   return (
     <MainTemplate>
-      <div className='app-overlay'>
-        <Container>
-          <Routes />
-        </Container>
-      </div>
+      <Container>
+        <Routes />
+      </Container>
     </MainTemplate>
   );
 };

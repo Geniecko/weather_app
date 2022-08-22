@@ -23,15 +23,15 @@ const ButtonStyled = styled.button<ButtonProps>`
   border-radius: ${({ search }) => (search ? '0 25px 25px 0' : '25px')};
   padding: ${({ search }) => (search ? '0' : '12px 20px')};
   color: ${({ secondary, theme }) => (secondary ? theme.primary : theme.secondary)};
-  font-weight: 500;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.4rem;
   display: flex;
   justify-content: ${({ search }) => (search ? 'center' : 'space-between')};
   align-items: center;
   gap: 8px;
   width: ${({ search }) => (search ? '44px' : 'unset')};
   height: ${({ search }) => (search ? '44px' : 'unset')};
-  transition: 0.3s ease-in-out;
+  transition: .2s ease-in-out;
 
   &:active,
   &:focus,
@@ -42,6 +42,7 @@ const ButtonStyled = styled.button<ButtonProps>`
   &:hover {
     background-color: ${({ secondary, theme }) => (secondary ? theme.primary : theme.secondary)};
     color: ${({ secondary, theme }) => (secondary ? theme.secondary : theme.primary)};
+    border-color: ${({ theme }) =>theme.primary};
   }
 `;
 

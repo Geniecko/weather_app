@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { WeatherData } from '../../store/types';
 import styled from 'styled-components/macro';
+import WeatherValue from '../WeatherValue/WeatherValue';
 
 interface CurrentWeatherProps {
   weather: WeatherData;
@@ -9,8 +10,6 @@ interface CurrentWeatherProps {
 const ICON_URL = 'http://openweathermap.org/img/wn/';
 
 const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
-  const temp = Math.floor(weather.main.temp - 273.15);
-  const tempFeelsLike = Math.floor(weather.main.feels_like - 273.15);
   const wind = Math.floor(weather.wind.speed * 3.6);
 
   const getTime = (unixTime: number): string => {
@@ -27,40 +26,38 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
     return `${hours}:${minutes} ${ampm}`;
   };
 
+  const getTemp = (temp: number): string => {
+    return `${Math.floor(temp - 273.15)} ${'\u2103'}`;
+  };
+
   return (
     <Wrapper>
       <DetailsPanel>
         <Icon src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
-        <Detail>
+        <WeatherValue>
           Description: <span>{weather.weather[0].main}</span>
-        </Detail>
-        <Detail>
-          Temp:{' '}
-          <span>
-            {temp} {'\u2103'}
-          </span>
-        </Detail>
-        <Detail>
-          Feels like:{' '}
-          <span>
-            {tempFeelsLike} {'\u2103'}
-          </span>
-        </Detail>
-        <Detail>
+        </WeatherValue>
+        <WeatherValue>
+          Temp: <span>{getTemp(weather.main.temp)}</span>
+        </WeatherValue>
+        <WeatherValue>
+          Feels like: <span>{getTemp(weather.main.feels_like)}</span>
+        </WeatherValue>
+        <WeatherValue>
           Wind: <span>{wind} km/h</span>
-        </Detail>
-        <Detail>
+        </WeatherValue>
+        <WeatherValue>
           Humidity: <span>{weather.main.humidity} %</span>
-        </Detail>
-        <Detail>
+        </WeatherValue>
+        <WeatherValue>
           Air pressure: <span>{weather.main.pressure} PS</span>
-        </Detail>
-        <Detail>
+        </WeatherValue>
+        <WeatherValue>
           Sunrise: <span>{getTime(weather.sys.sunrise)}</span>
-        </Detail>
-        <Detail>
+        </WeatherValue>
+        <WeatherValue>
           Sunset: <span>{getTime(weather.sys.sunset)}</span>
-        </Detail>
+        </WeatherValue>
       </DetailsPanel>
       <Name>
         {weather.name}, {weather.sys.country}
@@ -98,30 +95,6 @@ const Icon = styled.img`
 const Name = styled.h2`
   font-size: 3.2rem;
   font-weight: 600;
-`;
-
-const Detail = styled.div`
-  font-size: 1.4rem;
-  font-weight: 400;
-  margin-bottom: 16px;
-
-  @media (min-width: 768px) {
-    font-size: 1.8rem;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  span {
-    font-weight: 600;
-    font-size: 1.8rem;
-    margin-left: 8px;
-
-    @media (min-width: 768px) {
-      font-size: 2.4rem;
-    }
-  }
 `;
 
 export default CurrentWeather;
