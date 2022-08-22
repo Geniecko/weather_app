@@ -20,9 +20,9 @@ const WeatherSlider: FC<WeatherSliderProps> = ({ cities }) => {
   const splideOptions = {
     arrows: true,
     pagination: false,
-    autoplay: true,
     gap: '24px',
     perPage: 2,
+    perMove: 1,
     breakpoints: {
       768: {
         perPage: 1,

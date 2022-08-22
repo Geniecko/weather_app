@@ -73,6 +73,7 @@ const Card = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  padding: 16px 24px;
 `;
 
 const Name = styled.h3`
