@@ -1,15 +1,21 @@
-import { FC, ChangeEvent, useState, FormEvent } from 'react';
+import { FC, ChangeEvent, useState, FormEvent, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
 import { FaSearch } from 'react-icons/fa';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getWeather } from '../../store/actions/weatherActions';
+import ModalAlert from '../ModalAlert/ModalAlert';
+import { setAlert } from '../../store/slices/alertSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar: FC = () => {
+  const errorMessage = useAppSelector((state) => state.weather.error.message);
+  const status = useAppSelector((state) => state.weather.status);
   const dispatch = useAppDispatch();
   const [city, setCity] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
@@ -19,13 +25,21 @@ const SearchBar: FC = () => {
     event.preventDefault();
 
     if (city.trim() === '') {
-      alert('wypełnij pole - testowo');
+      dispatch(setAlert('Please fill in the field'));
+      setIsOpenModal(true);
       return;
     }
 
     dispatch(getWeather(city));
     setCity('');
   };
+
+  useEffect(() => {
+    if (status === 'rejected') {
+      dispatch(setAlert(errorMessage));
+      setIsOpenModal(true);
+    }
+  }, [status]);
 
   return (
     <Wrapper>
@@ -36,6 +50,7 @@ const SearchBar: FC = () => {
           <FaSearch />
         </Button>
       </Form>
+      {isOpenModal && <ModalAlert onClose={setIsOpenModal} />}
     </Wrapper>
   );
 };
