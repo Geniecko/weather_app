@@ -51,10 +51,12 @@ export interface SetErrorAction {
   error: WeatherError;
 }
 
+export type WeatherStateStatus = 'rejected' | 'ok' | 'idle' | 'loading';
+
 export interface WeatherState {
   data: WeatherData | null;
   loading: boolean;
-  status: 'rejected' | 'ok' | 'idle' | 'loading';
+  status: WeatherStateStatus;
   error: WeatherError;
 }
 
