@@ -9,9 +9,12 @@ import { getWeather } from '../../store/actions/weatherActions';
 import ModalAlert from '../ModalAlert/ModalAlert';
 import { setAlert } from '../../store/slices/alertSlice';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../router/constants';
 
 const SearchBar: FC = () => {
+  const navigate = useNavigate();
   const errorMessage = useAppSelector((state) => state.weather.error.message);
+  const weatherName = useAppSelector((state) => state.weather.data?.name);
   const status = useAppSelector((state) => state.weather.status);
   const dispatch = useAppDispatch();
   const [city, setCity] = useState('');
@@ -38,6 +41,8 @@ const SearchBar: FC = () => {
     if (status === 'rejected') {
       dispatch(setAlert(errorMessage));
       setIsOpenModal(true);
+    } else if(status === 'ok'){
+      navigate(`${ROUTES.HOME}${weatherName?.toLocaleLowerCase()}`);
     }
   }, [status]);
 
