@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getWeather } from '../actions/weatherActions';
-import { WeatherState } from '../types';
+import { WeatherState, WeatherStateStatus } from '../types';
 
 const initialState: WeatherState = {
   data: null,
@@ -15,7 +15,11 @@ const initialState: WeatherState = {
 const weatherSlice = createSlice({
   name: 'list',
   initialState,
-  reducers: {},
+  reducers: {
+    setStatus(state, action: PayloadAction<WeatherStateStatus>){
+      state.status = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getWeather.pending, (state) => {
       state.loading = true;
@@ -57,5 +61,5 @@ const weatherSlice = createSlice({
     });
   },
 });
-
+export const { setStatus } = weatherSlice.actions;
 export default weatherSlice.reducer;

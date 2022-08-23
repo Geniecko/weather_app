@@ -1,6 +1,10 @@
 import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { API_URL } from '../../api/data';
+import { ROUTES } from '../../router/constants';
+import { getWeather } from '../../store/actions/weatherActions';
+import { useAppDispatch } from '../../store/hooks';
 import { WeatherData } from '../../store/types';
 import Button from '../Button/Button';
 import Loading from '../Loading/Loading';
@@ -14,8 +18,10 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
   const [weather, setWeather] = useState({} as WeatherData);
   const [isWeather, setIsWeather] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const getWeather = async (cityName: string) => {
+  const getCurrentWeather = async (cityName: string) => {
     const response = await fetch(
       `${API_URL}&q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
     );
@@ -31,8 +37,13 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
     setIsWeather(true);
   };
 
+  const handleOnClick = () => {
+    dispatch(getWeather(weather.name));
+    navigate(`${ROUTES.HOME}${weather.name.toLocaleLowerCase()}`);
+  }
+
   useEffect(() => {
-    getWeather(city);
+    getCurrentWeather(city);
   }, []);
 
   const wind = isWeather && Math.floor(weather.wind.speed * 3.6);
@@ -60,7 +71,7 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
           <WeatherValue>
             Wind: <span>{wind} km/h</span>
           </WeatherValue>
-          <Button secondary>Details</Button>
+          <Button secondary onClick={handleOnClick}>Details</Button>
         </Card>
       )}
     </>
