@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  span{
+  span {
     font-weight: 600;
   }
 `;

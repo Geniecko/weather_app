@@ -34,12 +34,12 @@ const SearchBar: FC = () => {
     setCity('');
   };
 
-  useEffect(()=> {
-    if(status === 'rejected'){
+  useEffect(() => {
+    if (status === 'rejected') {
       dispatch(setAlert(errorMessage));
       setIsOpenModal(true);
     }
-  },[status]);
+  }, [status]);
 
   return (
     <Wrapper>

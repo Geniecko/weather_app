@@ -17,12 +17,14 @@ const ModalAlert: FC<ModalAlertProps> = ({ onClose }) => {
     dispatch(setAlert(''));
     onClose(false);
   };
-  
+
   return createPortal(
     <Background>
       <Container>
         <Alert>{alertMessage}</Alert>
-        <Button secondary onClick={handleOnClick}>Close</Button>
+        <Button secondary onClick={handleOnClick}>
+          Close
+        </Button>
       </Container>
     </Background>,
     document.body,
@@ -42,7 +44,7 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-  border: 1px solid ${({theme}) => theme.primary};
+  border: 1px solid ${({ theme }) => theme.primary};
   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px;
   border-radius: 25px;
   padding: 32px;
