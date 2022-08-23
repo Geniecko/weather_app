@@ -13,7 +13,7 @@ export const getWeather = createAsyncThunk<WeatherData, string, { rejectValue: S
       return thunkApi.rejectWithValue({
         error: {
           cod: `${response.status}`,
-          message: `${response.statusText} -> Failed to fetch weather.`,
+          message: response.statusText,
         },
       });
     }

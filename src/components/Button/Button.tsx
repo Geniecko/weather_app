@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components/macro';
 
 interface ButtonProps {
@@ -7,15 +7,7 @@ interface ButtonProps {
   search?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ children, secondary, search }) => {
-  return (
-    <ButtonStyled secondary={secondary} search={search}>
-      {children}
-    </ButtonStyled>
-  );
-};
-
-const ButtonStyled = styled.button<ButtonProps>`
+const Button = styled.button<ButtonProps>`
   cursor: pointer;
   border: 1px solid ${({ secondary, theme }) => (secondary ? theme.primary : 'transparent')};
   background-color: ${({ secondary, theme }) => (secondary ? 'transparent' : theme.primary)};
