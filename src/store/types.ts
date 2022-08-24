@@ -51,7 +51,7 @@ export interface SetErrorAction {
   error: WeatherError;
 }
 
-export type WeatherStateStatus = 'rejected' | 'ok' | 'idle' | 'loading';
+export type WeatherStateStatus = 'rejected' | 'ok' | 'idle' | 'loading' | 'init';
 
 export interface WeatherState {
   data: WeatherData | null;

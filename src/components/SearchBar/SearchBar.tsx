@@ -10,6 +10,7 @@ import ModalAlert from '../ModalAlert/ModalAlert';
 import { setAlert } from '../../store/slices/alertSlice';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../router/constants';
+import { setStatus } from '../../store/slices/weatherSlice';
 
 const SearchBar: FC = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const SearchBar: FC = () => {
     }
 
     dispatch(getWeather(city));
+    dispatch(setStatus('loading'));
     setCity('');
   };
 
@@ -41,7 +43,7 @@ const SearchBar: FC = () => {
     if (status === 'rejected') {
       dispatch(setAlert(errorMessage));
       setIsOpenModal(true);
-    } else if(status === 'ok'){
+    } else if (status === 'ok') {
       navigate(`${ROUTES.HOME}${weatherName?.toLocaleLowerCase()}`);
     }
   }, [status]);

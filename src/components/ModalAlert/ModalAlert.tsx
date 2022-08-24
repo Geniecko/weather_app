@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setAlert } from '../../store/slices/alertSlice';
+import { setStatus } from '../../store/slices/weatherSlice';
 import Button from '../Button/Button';
 
 interface ModalAlertProps {
@@ -15,6 +16,7 @@ const ModalAlert: FC<ModalAlertProps> = ({ onClose }) => {
 
   const handleOnClick = () => {
     dispatch(setAlert(''));
+    dispatch(setStatus('idle'));
     onClose(false);
   };
 

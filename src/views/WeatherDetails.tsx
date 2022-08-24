@@ -6,27 +6,36 @@ import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setStatus } from '../store/slices/weatherSlice';
 import { ROUTES } from '../router/constants';
+import AirPolution from '../components/AirPulution/AirPolution';
 
 const WeatherDetails: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const status = useAppSelector((state) => state.weather.status);
   const weather = useAppSelector((state) => state.weather.data);
 
   const handleOnClick = () => {
     dispatch(setStatus('idle'));
     navigate(-1);
-  }
+  };
 
   useEffect(() => {
-    if(weather === null){
-      navigate(`${ROUTES.HOME}`)
+    if (status === 'init') {
+      navigate(`${ROUTES.HOME}`);
     }
-  },[])
+  }, [status]);
 
   return (
     <Container>
-      <GoBackButton onClick={handleOnClick}><BsArrowLeftCircle/></GoBackButton>
-      {weather && <CurrentWeather weather={weather} />}
+      <GoBackButton onClick={handleOnClick}>
+        <BsArrowLeftCircle />
+      </GoBackButton>
+      {weather && (
+        <>
+          <CurrentWeather weather={weather} />
+          <AirPolution coord={weather?.coord} />
+        </>
+      )}
     </Container>
   );
 };
@@ -40,7 +49,7 @@ const GoBackButton = styled.button`
   align-self: flex-start;
   margin-top: 24px;
   font-size: 2.8rem;
-  color: ${({theme}) => theme.primary};
+  color: ${({ theme }) => theme.primary};
   border: none;
   background: none;
   outline: none;

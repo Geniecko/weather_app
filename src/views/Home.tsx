@@ -14,11 +14,7 @@ import WeatherSlider from '../components/WeatherSlider/WeatherSlider';
 //   'Łódź',
 // ];
 
-const polandCities = [
-  'Warszawa',
-  'Kraków',
-  'Katowice',
-];
+const polandCities = ['Warszawa', 'Kraków', 'Katowice'];
 
 // const worldCities = [
 //   'Paris',
