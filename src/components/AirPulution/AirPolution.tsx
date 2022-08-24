@@ -21,8 +21,8 @@ enum PolutionIndex {
 }
 
 const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
-  const [airPolution, setAirPolution] = useState({} as AirPolutionData);
-  const [status, setStatus] = useState(false);
+  const [airPolution, setAirPolution] = useState<AirPolutionData | null>(null);
+  const [isError, setIsError] = useState(false);
 
   const getAirPolution = async (lon: number, lat: number) => {
     const response = await fetch(
@@ -31,12 +31,12 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
 
     if (response.status !== 200) {
       const message = `An error has occured: ${response.status}`;
+      setIsError(true);
       throw new Error(message);
     }
 
     const responseData: AirPolutionData = await response.json();
     setAirPolution(responseData);
-    setStatus(true);
   };
 
   useEffect(() => {
@@ -49,11 +49,11 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
 
   return (
     <Container>
-      {status ? (
+      <Title>Air Polution</Title>
+      {airPolution ? (
         <>
-          <Title>Air Polution</Title>
           <WeatherValue>
-            Description: <span>{getPolutionName(airPolution.list[0].main.aqi)}</span>
+            Description: <span>{getPolutionName(airPolution?.list[0].main.aqi)}</span>
           </WeatherValue>
           <WeatherValue>
             Carbon monoxide:{' '}
@@ -86,6 +86,8 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
             Ammonia: <span>{Math.floor(airPolution.list[0].components.nh3 * 100) / 100} μg/m3</span>
           </WeatherValue>
         </>
+      ) : isError ? (
+        <span>Not found</span>
       ) : (
         <Loading />
       )}
@@ -101,10 +103,13 @@ const Container = styled.div`
 `;
 
 const Title = styled.span`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f2f2f230;
   display: block;
   font-size: 2.4rem;
   font-weight: 600;
+  text-align: center;
 `;
 
 export default AirPolution;
