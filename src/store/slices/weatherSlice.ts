@@ -5,7 +5,7 @@ import { WeatherState, WeatherStateStatus } from '../types';
 const initialState: WeatherState = {
   data: null,
   loading: false,
-  status: 'idle',
+  status: 'init',
   error: {
     cod: '',
     message: '',
@@ -16,9 +16,9 @@ const weatherSlice = createSlice({
   name: 'list',
   initialState,
   reducers: {
-    setStatus(state, action: PayloadAction<WeatherStateStatus>){
+    setStatus(state, action: PayloadAction<WeatherStateStatus>) {
       state.status = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getWeather.pending, (state) => {
