@@ -12,9 +12,9 @@ interface ForecastSliderProps {
 }
 
 const ForecastSlider: FC<ForecastSliderProps> = ({ forecast }) => {
-  const slides = forecast.map((day) => (
-    <SplideSlide key={day.dt}>
-      <DayForecastCard day={day} />
+  const slides = forecast.map((day, index) => (
+    <SplideSlide key={index}>
+      <DayForecastCard day={day} dayIndex={index} />
     </SplideSlide>
   ));
 

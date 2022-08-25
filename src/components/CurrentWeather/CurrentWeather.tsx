@@ -13,17 +13,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
   const wind = Math.floor(weather.wind.speed * 3.6);
 
   const getTime = (unixTime: number): string => {
-    const date = new Date(unixTime * 1000);
-
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-
-    const ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = Number(minutes.toString().padStart(2, '0'));
-
-    return `${hours}:${minutes} ${ampm}`;
+    return new Date(unixTime * 1000).toLocaleTimeString();
   };
 
   const getTemp = (temp: number): string => {
@@ -33,7 +23,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
   return (
     <Wrapper>
       <DetailsPanel>
-        <Icon src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
+        <Icon alt='weather' src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
         <WeatherValue>
           Description: <span>{weather.weather[0].main}</span>
         </WeatherValue>

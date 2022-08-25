@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { API_FORECAST_URL } from '../../api/data';
 import ForecastSlider from '../ForecastSlider/ForecastSlider';
 import Loading from '../Loading/Loading';
-import { ForecastData } from './types';
+import { Forecast, ForecastData } from './types';
 
 interface DailyForecastProps {
   coord: {
@@ -35,12 +35,28 @@ const DailyForecast: FC<DailyForecastProps> = ({ coord }) => {
     getForecast(coord.lat, coord.lon);
   }, []);
 
+  const getDaysFromArray = (): Forecast[] => {
+    let forecastDays: Forecast[] = [];
+    const time = new Date().toLocaleTimeString();
+
+    if (forecast) {
+      if (Number(time.slice(0, 2)) < 15) {
+        forecast.list.splice(0, 6);
+      }
+
+      forecastDays = forecast.list.filter((item) => {
+        return item.dt_txt.split(' ')[1] === '15:00:00';
+      });
+    }
+    return forecastDays;
+  };
+
   return (
     <Container>
-      <Title>5 Days Forecast</Title>
+      <Title>Other Days Forecast</Title>
       {forecast ? (
         <>
-          <ForecastSlider forecast={forecast.list.slice(0, 5)} />
+          <ForecastSlider forecast={getDaysFromArray()} />
         </>
       ) : isError ? (
         <span>Not found</span>
