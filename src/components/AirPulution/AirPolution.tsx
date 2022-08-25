@@ -47,8 +47,6 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
     return PolutionIndex[index];
   };
 
-  console.log(airPolution);
-
   return (
     <Container>
       <Title>Air Polution</Title>

@@ -1,11 +1,19 @@
 import { FC } from 'react';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
+import {
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+
+import { BsArrowRightCircle, BsArrowLeftCircle, BsArrowDownCircle } from 'react-icons/bs';
 import styled from 'styled-components/macro';
+import { keyframes } from 'styled-components';
 import { Forecast } from '../DailyForecast/types';
+import DayForecastCard from '../DayForecastCard/DayForecastCard';
 
 import '@splidejs/react-splide/css/core';
-import DayForecastCard from '../DayForecastCard/DayForecastCard';
 
 interface ForecastSliderProps {
   forecastDay: Forecast[];
@@ -39,25 +47,44 @@ const ForecastSlider: FC<ForecastSliderProps> = ({ forecastDay, dayIndex }) => {
 
   return (
     <Container>
-      <Day>
-        {days[dayIndex]}
-        {dayIndex === 0 && <span>(Today)</span>}
-      </Day>
-      <Date>{forecastDay[0].dt_txt.split(' ')[0]}</Date>
-      <Splide hasTrack={false} options={splideOptions}>
-        <SplideTrack>{slides}</SplideTrack>
-        <Navigation className='splide__arrows'>
-          <Arrow className='splide__arrow splide__arrow--prev'>
-            <BsArrowLeftCircle />
-          </Arrow>
-          <Arrow className='splide__arrow splide__arrow--next'>
-            <BsArrowRightCircle />
-          </Arrow>
-        </Navigation>
-      </Splide>
+      <AccordionItem>
+        <AccordionItemHeading>
+          <StyledAccordionItemButton as={AccordionItemButton}>
+            <Day>
+              {days[dayIndex]}
+              {dayIndex === 0 && <span>(Today)</span>}
+            </Day>
+            <Date>{forecastDay[0].dt_txt.split(' ')[0]}</Date>
+            <BsArrowDownCircle />
+          </StyledAccordionItemButton>
+        </AccordionItemHeading>
+        <StyledAccordionItemPanel as={AccordionItemPanel}>
+          <Splide hasTrack={false} options={splideOptions}>
+            <SplideTrack>{slides}</SplideTrack>
+            <Navigation className='splide__arrows'>
+              <Arrow className='splide__arrow splide__arrow--prev'>
+                <BsArrowLeftCircle />
+              </Arrow>
+              <Arrow className='splide__arrow splide__arrow--next'>
+                <BsArrowRightCircle />
+              </Arrow>
+            </Navigation>
+          </Splide>
+        </StyledAccordionItemPanel>
+      </AccordionItem>
     </Container>
   );
 };
+
+const fadeIn = keyframes`
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -113,7 +140,36 @@ const Date = styled.span`
   display: block;
   font-size: 1.4rem;
   font-weight: 400;
-  margin-bottom: 24px;
+`;
+
+const StyledAccordionItemButton = styled.button`
+  background: none;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &[aria-expanded='true'] {
+    svg {
+      display: none;
+    }
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 2.6rem;
+    margin: 4px;
+  }
+`;
+
+const StyledAccordionItemPanel = styled.div`
+  margin-top: 24px;
+  padding: 0;
+  animation: ${fadeIn} 0.35s ease-in;
 `;
 
 export default ForecastSlider;
