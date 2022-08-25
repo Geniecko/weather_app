@@ -15,9 +15,7 @@ const ForecastSliders: FC<ForecastSlidersProps> = ({ forecastDays }) => {
 
   return (
     <Container>
-      <StyledAccordion as={Accordion}>
-        {sliders}
-      </StyledAccordion>
+      <StyledAccordion as={Accordion}>{sliders}</StyledAccordion>
     </Container>
   );
 };

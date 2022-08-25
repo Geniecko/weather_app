@@ -35,15 +35,18 @@ const SearchBar: FC = () => {
     }
 
     dispatch(getWeather(city));
-    dispatch(setStatus('loading'));
     setCity('');
   };
 
   useEffect(() => {
     if (status === 'rejected') {
+      dispatch(setStatus('idle'));
       dispatch(setAlert(errorMessage));
       setIsOpenModal(true);
     } else if (status === 'ok') {
+      dispatch(setStatus('idle'));
+      console.log(weatherName);
+
       navigate(`${ROUTES.HOME}${weatherName?.toLocaleLowerCase()}`);
     }
   }, [status]);

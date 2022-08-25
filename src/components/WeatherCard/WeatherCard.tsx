@@ -1,11 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { API_WEATHER_URL } from '../../api/data';
-import { ROUTES } from '../../router/constants';
 import { getWeather } from '../../store/actions/weatherActions';
 import { useAppDispatch } from '../../store/hooks';
-import { setStatus } from '../../store/slices/weatherSlice';
 import { WeatherData } from '../../store/types';
 import Button from '../Button/Button';
 import Loading from '../Loading/Loading';
@@ -21,7 +18,6 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const getCurrentWeather = async (cityName: string) => {
     const response = await fetch(
@@ -43,8 +39,6 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
 
   const handleOnClick = () => {
     dispatch(getWeather(weather.name));
-    dispatch(setStatus('loading'));
-    navigate(`${ROUTES.HOME}${weather.name.toLocaleLowerCase()}`);
   };
 
   useEffect(() => {
