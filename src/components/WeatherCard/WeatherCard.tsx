@@ -18,6 +18,7 @@ interface WeatherCardProps {
 const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
   const [weather, setWeather] = useState({} as WeatherData);
   const [isWeather, setIsWeather] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
 
     if (response.status !== 200) {
       const message = `An error has occured: ${response.status}`;
+      setIsError(true);
+      setIsLoading(false);
       throw new Error(message);
     }
 
@@ -55,7 +58,7 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
 
   return (
     <>
-      {isLoading && <Loading />}
+      {isLoading ? <Loading /> : isError && <span>Not found</span>}
       {isWeather && (
         <Card>
           <Name>
