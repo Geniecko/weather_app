@@ -16,12 +16,12 @@ const Input = styled.input<InputProps>`
   padding: 8px 16px;
   color: ${({ theme }) => theme.primary};
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   letter-spacing: 0.25px;
   border-right: ${({ search }) => (search ? 'none' : '1px solid')};
 
-  @media (min-width: 576px) {
-    font-size: 1.4rem;
+  @media (min-width: 996px) {
+    font-size: 1.6rem;
 
     max-width: 350px;
     padding: 12px 20px;
@@ -29,7 +29,7 @@ const Input = styled.input<InputProps>`
 
   &::placeholder {
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: ${({ theme }) => theme.primary};
     letter-spacing: 0.5px;
     opacity: 0.25;
