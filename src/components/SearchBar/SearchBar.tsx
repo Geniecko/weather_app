@@ -75,6 +75,8 @@ const Wrapper = styled.div`
 const Form = styled.form`
   position: relative;
   display: flex;
+  justify-content: center;
+  width: 100%;
 `;
 
 export default SearchBar;

@@ -70,9 +70,9 @@ const WeatherCard: FC<WeatherCardProps> = ({ city }) => {
           <WeatherValue>
             Wind: <span>{wind} km/h</span>
           </WeatherValue>
-          <Button secondary onClick={handleOnClick}>
+          <StyledButton as={Button} secondary onClick={handleOnClick}>
             Details
-          </Button>
+          </StyledButton>
         </Card>
       )}
     </>
@@ -89,9 +89,17 @@ const Card = styled.div`
 `;
 
 const Name = styled.h3`
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   font-weight: 600;
   margin-bottom: 24px;
+  
+  @media (min-width: 576px) {
+    font-size: 2.4rem;
+  }
+`;
+
+const StyledButton = styled.button`
+  margin-top: 8px;
 `;
 
 export default WeatherCard;

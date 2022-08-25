@@ -47,12 +47,20 @@ const Container = styled.div`
 const GoBackButton = styled.button`
   align-self: flex-start;
   margin-top: 24px;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   color: ${({ theme }) => theme.primary};
   border: none;
   background: none;
   outline: none;
   cursor: pointer;
+
+  @media (min-width: 576px) {
+      font-size: 2.6rem;
+    }
+
+    @media (min-width: 996px) {
+      font-size: 2.8rem;
+    }
 `;
 
 export default WeatherDetails;

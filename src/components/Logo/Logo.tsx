@@ -7,8 +7,16 @@ const Logo: FC = () => {
 
 const Content = styled.span`
   display: block;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: 600;
+
+  @media (min-width: 576px) {
+    font-size: 2.4rem;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 2.8rem;
+  }
 `;
 
 export default Logo;

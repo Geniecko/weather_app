@@ -97,17 +97,25 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
 
 const Container = styled.div`
   margin-top: 24px;
-  padding: 24px;
+  padding: 24px 16px;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px;
+
+  @media (min-width: 576px) {
+    padding: 24px 20px;
+  }
+
+  @media (min-width: 996px) {
+    padding: 24px;
+  }
 `;
 
 const Title = styled.span`
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #f2f2f230;
   display: block;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
 `;

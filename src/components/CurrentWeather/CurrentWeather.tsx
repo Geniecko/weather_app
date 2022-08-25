@@ -21,7 +21,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
   };
 
   return (
-    <Wrapper>
+    <Container>
       <DetailsPanel>
         <Icon alt='weather' src={`${ICON_URL}${weather.weather[0].icon}@2x.png`} />
         <WeatherValue>
@@ -52,23 +52,28 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ weather }) => {
       <Name>
         {weather.name}, {weather.sys.country}
       </Name>
-    </Wrapper>
+    </Container>
   );
 };
 
-const Wrapper = styled.div`
+const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
   margin-top: 24px;
   gap: 16px;
-  padding: 24px;
+  padding: 24px 16px;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px;
 
   @media (min-width: 576px) {
     flex-direction: row;
     justify-content: space-between;
+    padding: 24px 20px;
+  }
+
+  @media (min-width: 996px) {
+    padding: 24px;
   }
 `;
 
@@ -83,8 +88,16 @@ const Icon = styled.img`
 `;
 
 const Name = styled.h2`
-  font-size: 3.2rem;
+  font-size: 2.6rem;
   font-weight: 600;
+
+  @media (min-width: 576px) {
+      font-size: 2.8rem;
+    }
+
+    @media (min-width: 996px) {
+      font-size: 3rem;
+    }
 `;
 
 export default CurrentWeather;

@@ -102,7 +102,7 @@ const Navigation = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 24px;
 `;
 
 const Arrow = styled.button`
@@ -110,10 +110,18 @@ const Arrow = styled.button`
   border: none;
   background: none;
   color: ${({ theme }) => theme.primary};
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   cursor: pointer;
   transition: all 0.3s;
   line-height: 0;
+
+  @media (min-width: 576px) {
+      font-size: 2.4rem;
+    }
+
+    @media (min-width: 996px) {
+      font-size: 2.6rem;
+    }
 
   &:disabled,
   &[disabled] {
@@ -124,15 +132,23 @@ const Arrow = styled.button`
 
 const Day = styled.span`
   display: block;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 600;
   margin-bottom: 12px;
 
+  @media (min-width: 576px) {
+    font-size: 2.2rem;
+  }
+
   span {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 400;
     display: inline-block;
     margin-left: 8px;
+
+    @media (min-width: 576px) {
+      font-size: 1.8rem;
+    }
   }
 `;
 
@@ -161,8 +177,16 @@ const StyledAccordionItemButton = styled.button`
     position: absolute;
     right: 0;
     top: 0;
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     margin: 4px;
+
+    @media (min-width: 576px) {
+      font-size: 2.4rem;
+    }
+
+    @media (min-width: 996px) {
+      font-size: 2.6rem;
+    }
   }
 `;
 

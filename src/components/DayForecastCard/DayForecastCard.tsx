@@ -36,7 +36,9 @@ const DayForecastCard: FC<DayForecastCardProps> = ({ day }) => {
   );
 };
 
-const Card = styled.div``;
+const Card = styled.div`
+  text-align: center;
+`;
 
 const Time = styled.h3`
   display: block;
