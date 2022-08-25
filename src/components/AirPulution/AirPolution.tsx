@@ -40,12 +40,14 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
   };
 
   useEffect(() => {
-    getAirPolution(coord.lat, coord.lon);
+    getAirPolution(coord.lon, coord.lat);
   }, []);
 
   const getPolutionName = (index: number): string => {
     return PolutionIndex[index];
   };
+
+  console.log(airPolution);
 
   return (
     <Container>

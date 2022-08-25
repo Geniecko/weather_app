@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { API_FORECAST_URL } from '../../api/data';
-import ForecastSlider from '../ForecastSlider/ForecastSlider';
+import ForecastSliders from '../ForecastSliders/ForecastSliders';
 import Loading from '../Loading/Loading';
 import { Forecast, ForecastData } from './types';
 
@@ -14,6 +14,7 @@ interface DailyForecastProps {
 
 const DailyForecast: FC<DailyForecastProps> = ({ coord }) => {
   const [forecast, setForecast] = useState<ForecastData | null>(null);
+  const [forecastDays, setForecastDays] = useState<Forecast[][] | null>(null);
   const [isError, setIsError] = useState(false);
 
   const getForecast = async (lon: number, lat: number) => {
@@ -31,33 +32,42 @@ const DailyForecast: FC<DailyForecastProps> = ({ coord }) => {
     setForecast(responseData);
   };
 
-  useEffect(() => {
-    getForecast(coord.lat, coord.lon);
-  }, []);
+  const createForecastDaysArray = (): void => {
+    const forecastArray = forecast?.list;
+    const forecastDaysArray: Forecast[][] = [];
+    let index = 0;
 
-  const getDaysFromArray = (): Forecast[] => {
-    let forecastDays: Forecast[] = [];
-    const time = new Date().toLocaleTimeString();
+    if (forecastArray) {
+      while (index !== -1) {
+        index = forecastArray.findIndex((item) => item.dt_txt.split(' ')[1] === '00:00:00');
+        if (index === 0) {
+          index = 8;
+        }
 
-    if (forecast) {
-      if (Number(time.slice(0, 2)) < 15) {
-        forecast.list.splice(0, 6);
+        if (forecastArray.length > 0) {
+          forecastDaysArray.push(forecastArray.slice(0, index));
+          forecastArray.splice(0, index);
+        }
       }
-
-      forecastDays = forecast.list.filter((item) => {
-        return item.dt_txt.split(' ')[1] === '15:00:00';
-      });
     }
-    return forecastDays;
+
+    setForecastDays(forecastDaysArray);
   };
+
+  useEffect(() => {
+    if (forecast === null) return;
+    createForecastDaysArray();
+  }, [forecast]);
+
+  useEffect(() => {
+    getForecast(coord.lon, coord.lat);
+  }, []);
 
   return (
     <Container>
-      <Title>Other Days Forecast</Title>
+      <Title>Hourly forecast</Title>
       {forecast ? (
-        <>
-          <ForecastSlider forecast={getDaysFromArray()} />
-        </>
+        <ForecastSliders forecastDays={forecastDays} />
       ) : isError ? (
         <span>Not found</span>
       ) : (

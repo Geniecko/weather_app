@@ -34,8 +34,8 @@ const WeatherDetails: FC = () => {
       {weather && (
         <>
           <CurrentWeather weather={weather} />
-          <AirPolution coord={weather?.coord} />
           <DailyForecast coord={weather?.coord} />
+          <AirPolution coord={weather?.coord} />
         </>
       )}
     </Container>
