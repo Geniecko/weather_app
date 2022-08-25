@@ -45,8 +45,6 @@ const SearchBar: FC = () => {
       setIsOpenModal(true);
     } else if (status === 'ok') {
       dispatch(setStatus('idle'));
-      console.log(weatherName);
-
       navigate(`${ROUTES.HOME}${weatherName?.toLocaleLowerCase()}`);
     }
   }, [status]);
