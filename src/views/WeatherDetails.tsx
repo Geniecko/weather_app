@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setStatus } from '../store/slices/weatherSlice';
 import { ROUTES } from '../router/constants';
 import AirPolution from '../components/AirPulution/AirPolution';
+import DailyForecast from '../components/DailyForecast/DailyForecast';
 
 const WeatherDetails: FC = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ const WeatherDetails: FC = () => {
       {weather && (
         <>
           <CurrentWeather weather={weather} />
+          <DailyForecast coord={weather?.coord} />
           <AirPolution coord={weather?.coord} />
         </>
       )}
