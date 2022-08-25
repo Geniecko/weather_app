@@ -3,29 +3,23 @@ import styled from 'styled-components/macro';
 import SearchBar from '../components/SearchBar/SearchBar';
 import WeatherSlider from '../components/WeatherSlider/WeatherSlider';
 
-// const polandCities = [
-//   'Warszawa',
-//   'Kraków',
-//   'Katowice',
-//   'Gdańsk',
-//   'Rzeszów',
-//   'Wrocław',
-//   'Poznań',
-//   'Łódź',
-// ];
+const polandCities = [
+  'Warszawa',
+  'Kraków',
+  'Katowice',
+  'Gdańsk',
+  'Rzeszów',
+  'Wrocław',
+];
 
-const polandCities = ['Warszawa', 'Kraków', 'Katowice'];
-
-// const worldCities = [
-//   'Paris',
-//   'New York',
-//   'Barcelona',
-//   'Amsterdam',
-//   'London',
-//   'Budapeszt',
-//   'Zagrzeb',
-//   'Berlin',
-// ];
+const worldCities = [
+  'Paris',
+  'New York',
+  'Barcelona',
+  'Amsterdam',
+  'London',
+  'Budapeszt',
+];
 
 const Home: FC = () => {
   return (
@@ -34,9 +28,9 @@ const Home: FC = () => {
       <Slider>
         <WeatherSlider cities={polandCities} />
       </Slider>
-      {/* <Slider>
+      <Slider>
         <WeatherSlider cities={worldCities} />
-      </Slider> */}
+      </Slider>
     </>
   );
 };
