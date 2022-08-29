@@ -26,6 +26,10 @@ const Button = styled.button<ButtonProps>`
   height: ${({ search }) => (search ? '44px' : 'unset')};
   transition: 0.2s ease-in-out;
 
+  @media (min-width: 996px) {
+    font-size: 1.6rem;
+  }
+
   &:active,
   &:focus,
   &:hover {

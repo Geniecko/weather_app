@@ -21,10 +21,8 @@ const Input = styled.input<InputProps>`
   border-right: ${({ search }) => (search ? 'none' : '1px solid')};
 
   @media (min-width: 996px) {
-    font-size: 1.6rem;
-
     max-width: 350px;
-    padding: 12px 20px;
+    font-size: 1.6rem;
   }
 
   &::placeholder {
