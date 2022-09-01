@@ -7,7 +7,7 @@ interface DayForecastCardProps {
   day: Forecast;
 }
 
-const ICON_URL = 'http://openweathermap.org/img/wn/';
+const ICON_URL = 'https://openweathermap.org/img/wn/';
 
 const DayForecastCard: FC<DayForecastCardProps> = ({ day }) => {
   const wind = Math.floor(day.wind.speed * 3.6);
