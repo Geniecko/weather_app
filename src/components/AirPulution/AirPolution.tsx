@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { API_AIR_POLUTION_URL } from '../../api/data';
 import Loading from '../Loading/Loading';
 import WeatherValue from '../WeatherValue/WeatherValue';
-import { AirPolutionData } from './types';
+import { AirPolutionData, AirPolutionList } from './types';
 
 interface AirPolutionProps {
   coord: {
@@ -21,7 +21,7 @@ enum PolutionIndex {
 }
 
 const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
-  const [airPolution, setAirPolution] = useState<AirPolutionData | null>(null);
+  const [airPolution, setAirPolution] = useState<AirPolutionList[] | []>([]);
   const [isError, setIsError] = useState(false);
 
   const getAirPolution = async (lon: number, lat: number) => {
@@ -36,7 +36,12 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
     }
 
     const responseData: AirPolutionData = await response.json();
-    setAirPolution(responseData);
+    
+    if (responseData.list.length > 0) {
+      setAirPolution(responseData.list);
+    } else {
+      setIsError(true);
+    }
   };
 
   useEffect(() => {
@@ -50,44 +55,44 @@ const AirPolution: FC<AirPolutionProps> = ({ coord }) => {
   return (
     <Container>
       <Title>Air Polution</Title>
-      {airPolution ? (
+      {airPolution.length > 0 ? (
         <>
           <WeatherValue>
-            Description: <span>{getPolutionName(airPolution?.list[0].main.aqi)}</span>
+            Description: <span>{getPolutionName(airPolution[0].main.aqi)}</span>
           </WeatherValue>
           <WeatherValue>
             Carbon monoxide:{' '}
-            <span>{Math.floor(airPolution.list[0].components.co * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.co * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
             Nitrogen monoxide:{' '}
-            <span>{Math.floor(airPolution.list[0].components.no * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.no * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
             Nitrogen dioxide:{' '}
-            <span>{Math.floor(airPolution.list[0].components.no2 * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.no2 * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
-            Ozone: <span>{Math.floor(airPolution.list[0].components.o3 * 100) / 100} μg/m3</span>
+            Ozone: <span>{Math.floor(airPolution[0].components.o3 * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
             Sulphur dioxide:{' '}
-            <span>{Math.floor(airPolution.list[0].components.so2 * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.so2 * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
             Fine particles matter:{' '}
-            <span>{Math.floor(airPolution.list[0].components.pm2_5 * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.pm2_5 * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
             Coarse particulate matter:{' '}
-            <span>{Math.floor(airPolution.list[0].components.pm10 * 100) / 100} μg/m3</span>
+            <span>{Math.floor(airPolution[0].components.pm10 * 100) / 100} μg/m3</span>
           </WeatherValue>
           <WeatherValue>
-            Ammonia: <span>{Math.floor(airPolution.list[0].components.nh3 * 100) / 100} μg/m3</span>
+            Ammonia: <span>{Math.floor(airPolution[0].components.nh3 * 100) / 100} μg/m3</span>
           </WeatherValue>
         </>
       ) : isError ? (
-        <span>Not found</span>
+        <ErrorMessage>Not found</ErrorMessage>
       ) : (
         <Loading />
       )}
@@ -120,4 +125,9 @@ const Title = styled.span`
   text-align: center;
 `;
 
+const ErrorMessage = styled.span`
+  width: 100%;
+  display: block;
+  text-align: center;
+`;
 export default AirPolution;

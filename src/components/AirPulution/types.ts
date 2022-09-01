@@ -1,4 +1,4 @@
-interface AirPolution {
+export interface AirPolutionList {
   dt: number;
   main: {
     aqi: number;
@@ -17,5 +17,5 @@ interface AirPolution {
 
 export interface AirPolutionData {
   coord: number[];
-  list: AirPolution[];
+  list: AirPolutionList[];
 }
