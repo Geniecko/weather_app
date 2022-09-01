@@ -11,6 +11,7 @@ import { setAlert } from '../../store/slices/alertSlice';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../router/constants';
 import { setStatus } from '../../store/slices/weatherSlice';
+import CitiesHints from '../CitiesHints/CitiesHints';
 
 const SearchBar: FC = () => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const SearchBar: FC = () => {
           <FaSearch />
         </Button>
       </Form>
+      <CitiesHints city={city}/>
       {isOpenModal && <ModalAlert onClose={setIsOpenModal} />}
     </Wrapper>
   );
